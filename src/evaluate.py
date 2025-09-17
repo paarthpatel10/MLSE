@@ -5,10 +5,16 @@ import json
 import os
 from sklearn.metrics import accuracy_score, f1_score, confusion_matrix
 
+# Load params.yaml
+with open("params.yaml") as f:
+    params = yaml.safe_load(f)
+
 # Load test data
 test = pd.read_csv("data/processed/test.csv")
-X_test = test.drop(columns=["target"])
-y_test = test["target"]
+target = params["target"]
+
+X_test = test.drop(columns=[target])
+y_test = test[target]
 
 # Load model
 model = joblib.load("models/model.pkl")
