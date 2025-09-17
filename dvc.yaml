@@ -18,11 +18,12 @@ stages:
     outs:
       - models/model.pkl
 
-  evaluate:
+   evaluate:
     cmd: python src/evaluate.py
     deps:
       - src/evaluate.py
       - models/model.pkl
       - data/processed/test.csv
-    outs:
+    metrics:   # ✅ Change here
       - experiments/results.json
+
